@@ -156,6 +156,8 @@ class WatchQuery(BaseQuery):
             kwargs["namespace"] = self.namespace
         if self.api_obj_class.version:
             kwargs["version"] = self.api_obj_class.version
+        if self.api_obj_class.base:
+            kwargs["base"] = self.api_obj_class.base
         r = self.api.get(**kwargs)
         self.api.raise_for_status(r)
         WatchEvent = namedtuple("WatchEvent", "type object")
